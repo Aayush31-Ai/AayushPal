@@ -1,7 +1,7 @@
 // YAHAN CHANGE KIYA: 'useRef' ko import kiya
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { FlipWords } from '../../components/ui/flip-words';
-import Nav from '../../components/Nav';
+import React, { useState, useEffect, useMemo, useRef } from "react";
+import { FlipWords } from "../../components/ui/flip-words";
+import Nav from "../../components/Nav";
 // YAHAN CHANGE KIYA: Component ko App se bahar nikal diya
 // Isse yeh har render par re-create nahi hoga.
 const GlobalStyles = () => (
@@ -33,27 +33,26 @@ const GlobalStyles = () => (
 // React.memo yeh sunishchit karta hai ki cell sirf tabhi re-render ho
 // jab uske props (isActive) badlen.
 const GridCell = ({ isActive }) => (
-  <div className={`grid-cell ${isActive ? 'active' : ''}`}></div>
+  <div className={`grid-cell ${isActive ? "active" : ""}`}></div>
 );
 const MemoizedGridCell = React.memo(GridCell);
-
 
 export default function App() {
   const [gridDims, setGridDims] = useState({ cols: 0, rows: 0 });
   const [activeCells, setActiveCells] = useState(new Set());
   const cellSize = 70;
-  
+
   // YAHAN CHANGE KIYA: Mobile glitch fix ke liye ref add kiya
   const homeRef = useRef(null);
 
   useEffect(() => {
     let resizeTimer;
-    
+
     // YAHAN CHANGE KIYA: handleResize ab 'window' ke بجائے 'homeRef' ka size lega
     // Yeh mobile browser mein URL bar ke hide/show hone par hone wale jank ko rokta hai
     const handleResize = () => {
       if (!homeRef.current) return; // Agar ref abhi tak set nahi hua hai
-      
+
       const numCols = Math.ceil(homeRef.current.offsetWidth / cellSize);
       const numRows = Math.ceil(homeRef.current.offsetHeight / cellSize);
       setGridDims({ cols: numCols, rows: numRows });
@@ -65,10 +64,10 @@ export default function App() {
     };
 
     handleResize(); // Pehli baar run karo
-    window.addEventListener('resize', debouncedHandleResize);
+    window.addEventListener("resize", debouncedHandleResize);
     return () => {
       clearTimeout(resizeTimer);
-      window.removeEventListener('resize', debouncedHandleResize);
+      window.removeEventListener("resize", debouncedHandleResize);
     };
   }, [cellSize]); // cellSize constant hai, toh yeh effect sirf mount/unmount par chalega
 
@@ -78,16 +77,16 @@ export default function App() {
 
     const intervalId = setInterval(() => {
       const index = Math.floor(Math.random() * totalCells);
-      
+
       // YAHAN CHANGE KIYA: State update ko thoda clean kiya (same logic)
-      setActiveCells(prev => {
+      setActiveCells((prev) => {
         const next = new Set(prev);
         next.add(index);
         return next;
       });
-      
+
       setTimeout(() => {
-        setActiveCells(prev => {
+        setActiveCells((prev) => {
           const next = new Set(prev);
           next.delete(index);
           return next;
@@ -101,26 +100,29 @@ export default function App() {
   const gridCells = useMemo(() => {
     const totalCells = gridDims.cols * gridDims.rows;
     if (totalCells === 0) return [];
-    
+
     // YAHAN CHANGE KIYA: Ab hum simple 'div' ke bajaye 'MemoizedGridCell' render kar rahe hain
     // Yeh performance ko 100x behtar banata hai
     return Array.from({ length: totalCells }).map((_, index) => (
-      <MemoizedGridCell 
-        key={index} 
-        isActive={activeCells.has(index)}
-      />
+      <MemoizedGridCell key={index} isActive={activeCells.has(index)} />
     ));
   }, [gridDims.cols, gridDims.rows, activeCells]); // activeCells par depend karna theek hai kyunki ab children memoized hain
 
-  const words = ["Fast", "Intelligent", "Scalable", "AI-Powered", "Beautiful", "Seamless"];
+  const words = [
+    "Fast",
+    "Intelligent",
+    "Scalable",
+    "AI-Powered",
+    "Beautiful",
+    "Seamless",
+  ];
 
   return (
     // YAHAN CHANGE KIYA: Typo fix ('over-flow-hidden' -> 'overflow-hidden')
-    <div className='overflow-hidden'>
+    <div className="overflow-hidden">
       <GlobalStyles />
-      
+
       <div className="bg-black text-white w-screen">
-        
         {/* YAHAN CHANGE KIYA: 'ref' ko add kiya hai */}
         <div id="home" ref={homeRef} className="relative w-full h-dvh">
           {/* <Nav/> */}
@@ -135,12 +137,13 @@ export default function App() {
             {gridCells}
           </div>
 
-          <div 
+          <div
             id="vignette-overlay"
             // YAHAN CHANGE KIYA: 'z-5' valid class nahi hai, 'z-10' kar diya
             className="absolute inset-0 z-10 pointer-events-none"
             style={{
-              background: 'radial-gradient(ellipse at center, transparent 50%, #000 80%)'
+              background:
+                "radial-gradient(ellipse at center, transparent 50%, #000 80%)",
             }}
           ></div>
 
@@ -154,45 +157,54 @@ export default function App() {
                 Ab parent ka 'flex items-center justify-center' content ko perfectly center karega
             */}
             <div id="content-wrapper" className="text-center  space-y-6">
-              <h2
-                className="text-lg md:text-xl lg:text-2xl font-bold text-gray-400 tracking-wide uppercase"
-              >
+              <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-gray-400 tracking-wide uppercase">
                 From Code to Creation
               </h2>
-              
-              <h1 className="text-3xl md:text-5xl lg:text-6xl text-gray-200 font-extrabold leading-tight max-w-3xl mx-auto"
-                  style={{ textShadow: '0 0 15px rgba(255,255,255,0.3)' }}>
+
+              <h1
+                className="text-3xl md:text-5xl lg:text-6xl text-gray-200 font-extrabold leading-tight max-w-3xl mx-auto"
+                style={{ textShadow: "0 0 15px rgba(255,255,255,0.3)" }}
+              >
                 I Build Web Experience
                 <br />
                 That are <FlipWords words={words} duration={3000} />
               </h1>
-              
+
               <h2 className="text-lg md:text-xl text-gray-300">
-                Hi, I'm <span className='font-bold text-xl text-indigo-400'> Aayush</span>, a Web Developer from India.
+                Hi, I'm{" "}
+                <span className="font-bold text-xl text-indigo-400">
+                  {" "}
+                  Aayush
+                </span>
+                , a Web Developer from India.
               </h2>
-                
+
               <div className="flex justify-center items-center gap-4 pt-4">
-                <button
-                  className="bg-indigo-500 text-white font-bold py-3 px-8 rounded-lg text-lg
+                <a href="#contact">
+                  <button
+                    className="bg-indigo-500 text-white font-bold py-3 px-8 rounded-lg text-lg
                              hover:bg-indigo-400 transition-colors duration-300 shadow-lg shadow-indigo-500/30
                              pointer-events-auto"
-                >
-                  Get In Touch
-                </button>
-                
-                <button 
-                  className='text-white font-bold py-3 px-8 rounded-lg text-lg 
+                  >
+                    Get In Touch
+                  </button>
+                </a>
+
+
+                <button
+                  className="text-white font-bold py-3 px-8 rounded-lg text-lg 
                              bg-white/10 border border-gray-600 backdrop-blur-sm
                              hover:text-indigo-400 hover:bg-transparent transition-colors duration-300
-                             pointer-events-auto'
+                             pointer-events-auto"
                 >
                   Resume
                 </button>
+<a href="https://drive.google.com/file/d/1iBsSDJpCjMZ8Pq0QwiobpklnMa4soO16/view" target="_blank"></a>
+              
               </div>
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   );
