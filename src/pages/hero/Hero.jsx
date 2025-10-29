@@ -191,7 +191,9 @@ export default function App() {
                 </a>
 
 
-                <button
+              
+<a href="https://drive.google.com/file/d/1iBsSDJpCjMZ8Pq0QwiobpklnMa4soO16/view" target="_blank">
+<button
                   className="text-white font-bold py-3 px-8 rounded-lg text-lg 
                              bg-white/10 border border-gray-600 backdrop-blur-sm
                              hover:text-indigo-400 hover:bg-transparent transition-colors duration-300
@@ -199,7 +201,7 @@ export default function App() {
                 >
                   Resume
                 </button>
-<a href="https://drive.google.com/file/d/1iBsSDJpCjMZ8Pq0QwiobpklnMa4soO16/view" target="_blank"></a>
+</a>
               
               </div>
             </div>
