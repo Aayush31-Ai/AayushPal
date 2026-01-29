@@ -13,7 +13,7 @@ const glows = [
 ];
 
 const boxDetail = [
-  { title: "Experience", description: "6+ Months" },
+  { title: "Experience", description: "1+ Year" },
   { title: "Speciality", description: "Full Stack with AI integration" },
   { title: "Focus", description: "Performance and Deployment" },
 ];
