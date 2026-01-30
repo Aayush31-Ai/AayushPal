@@ -107,7 +107,7 @@ const NewContact = () => {
             />
             <SocialLink
               href="https://api.whatsapp.com/send/?phone=919930940153"
-              icon={<i className="fa-brands fa-whatsapp text-lg"></i>}
+              icon={<Phone size={20} />}
               label="Phone"
             />
             <SocialLink
