@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aayushpal.me/sitemap.xml
