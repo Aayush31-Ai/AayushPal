@@ -108,7 +108,7 @@ const NewContact = () => {
             <SocialLink
               href="https://api.whatsapp.com/send/?phone=919930940153"
               icon={<i className="fa-brands fa-whatsapp text-lg"></i>}
-              label="WhatsApp"
+              label="Phone"
             />
             <SocialLink
               href="mailto:aayush@example.com"
