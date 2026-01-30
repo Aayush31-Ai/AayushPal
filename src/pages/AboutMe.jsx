@@ -233,13 +233,13 @@ const AboutMe = () => {
             </div>
 
             <p ref={descriptionRef} className="text-sm sm:text-base md:text-lg leading-relaxed text-justify text-zinc-400 max-w-3xl mx-auto md:mx-0 px-2">
-              Hi, I am Aayush Pal, a 19-year-old Full Stack Web Developer and B.Sc
-              Computer Science student from India. I love building websites that
-              solve real-life problems and make people’s lives easier. I enjoy
-              integrating AI into my projects to add smart and practical features.
-              Honestly, I’m a bit lazy, which is exactly why I focus on creating
-              efficient and time-saving web solutions that do the hard work for
-              users.
+             Hi, I’m Aayush Pal, a 19-year-old Full Stack Web Developer, Hackathon Winner, and B.Sc. Computer Science student from India.
+
+I enjoy building web applications based on unique, problem-first ideas that solve real-life challenges and genuinely make people’s lives easier. I actively integrate AI-powered features to turn innovative concepts into practical, scalable solutions.
+
+I also have experience leading hackathon teams, where I focus on idea validation, solution architecture, and fast, effective execution under tight deadlines.
+
+My approach is simple: think differently, build smart, and create products that actually matter.
             </p>
 
             {/* TextType Component Section */}
